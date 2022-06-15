@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UploadCSVFileRequest;
+use Maatwebsite\Excel\Excel;
 use App\Imports\ProductsImport;
+use App\Http\Requests\UploadCSVFileRequest;
 
 class ProductController extends Controller
 {
@@ -11,8 +12,10 @@ class ProductController extends Controller
     {
         $message = 'false';
         if ($request->isMethodPost()) {
+            // get the CSV file from validated request;
             $file = $request->file('csv_import');
-            \Excel::import(new ProductsImport(), $file);
+            // call csv import method // App\Imports\ProductsImport
+            (new ProductsImport())->import($file, null, Excel::CSV);
             $message = 'The CSV file is uploaded!';
         }
         return redirect()
