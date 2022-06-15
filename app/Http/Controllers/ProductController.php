@@ -7,11 +7,6 @@ use App\Imports\ProductsImport;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        return view('index');
-    }
-
     public function uploadCSV(UploadCSVFileRequest $request)
     {
         $message = 'false';
