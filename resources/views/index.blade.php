@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('app.css') }}">
+    <link rel="stylesheet" href="{{ asset('app.css') }}">
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         html {
@@ -450,7 +450,10 @@
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                <input type="file" name="" id="" class="form-control">
+                                <form action="{{ route('csv_import') }}" method="post">
+                                    @csrf
+                                    <input type="file" name="csv_import" id="" class="form-control">
+                                </form>
                             </div>
                         </div>
                     </div>
