@@ -11,8 +11,8 @@ class ProductController extends Controller
     {
         $message = 'false';
         if ($request->isMethodPost()) {
-            $file = $request->file;
-            \Excel::import(ProductsImport::class, $file);
+            $file = $request->file('csv_import');
+            \Excel::import(new ProductsImport(), $file);
             $message = 'The CSV file is uploaded!';
         }
         return redirect()

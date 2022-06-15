@@ -23,7 +23,7 @@ class UploadCSVFileRequest extends FormRequest
      */
     public function isMethodPost()
     {
-        return $this['_method'] == 'POST';
+        return $this->method() == 'POST';
     }
 
     /**
@@ -33,6 +33,6 @@ class UploadCSVFileRequest extends FormRequest
      */
     public function rules()
     {
-        return ['csv_import' => 'required|mimes:csv,txt'];
+        return ['csv_import' => ['required', 'file', 'mimes:csv,txt']];
     }
 }

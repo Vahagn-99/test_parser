@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class ProductsImport implements ToModel, WithHeadingRow
 {
+    protected $data = [];
     /**
      * @param array $row
      *
@@ -15,22 +16,26 @@ class ProductsImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        dd($row);
-        return new Product([
-            'code' => $row[''],
-            'denomination' => $row[''],
-            'level_1' => $row[''],
-            'level_2' => $row[''],
-            'level_3' => $row[''],
-            'price' => $row[''],
-            'price_sp' => $row[''],
-            'total' => $row[''],
-            'property_fields' => $row[''],
-            'joint_purchases' => $row[''],
-            'unit' => $row[''],
-            'image' => $row[''],
-            'show_main' => $row[''],
-            'description' => $row[''],
-        ]);
+        foreach ($row as $key => $item) {
+            $this->data += [
+                'code' => $row['kod'],
+                'denomination' => $row['naimenovanie'],
+                'level_1' => $row['uroven1'],
+                'level_2' => $row['uroven2'],
+                'level_3' => $row['uroven3'],
+                'price' => $row['cena'],
+                'price_sp' => $row['cenasp'],
+                'total' => $row['kolicestvo'],
+                'property_fields' => $row['polya_svoistv'],
+                'joint_purchases' => $row['sovmestnye_pokupki'],
+                'unit' => $row['edinica_izmereniya'],
+                'image' => $row['kartinka'],
+                'show_main' => $row['vyvodit_na_glavnoi'],
+                'description' => $row['opisanie'],
+            ];
+        }
+        dd($data);
+        $product = Product::create($data);
+        return $product;
     }
 }
