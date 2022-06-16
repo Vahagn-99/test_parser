@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Product;
 use Illuminate\Support\Collection;
 use App\Imports\ProductCreateInterface;
+use App\Jobs\UploadFileJob;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToCollection;
