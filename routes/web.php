@@ -1,9 +1,10 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return redirect(RouteServiceProvider::HOME);
 });
 
 //imports and exports files

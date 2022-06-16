@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Mockery\Exception\InvalidOrderException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,8 +37,15 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (NotFoundHttpException $e, $request) {
+            if ($request->is('/*')) {
+                return response()->json(
+                    [
+                        'redirect' => RouteServiceProvider::HOME,
+                    ],
+                    404
+                );
+            }
         });
     }
 }

@@ -56,8 +56,8 @@
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                         style=" width: 100%;" id="menu">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link align-middle mr-2 text-white fs-5">
-                                Upload File
+                            <a href="{{ route('scv_all') }}" class="nav-link align-middle mr-2 text-white fs-5">
+                                Import CSV Files
                             </a>
                         </li>
                     </ul>
@@ -68,6 +68,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>
